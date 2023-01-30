@@ -116,10 +116,6 @@ const AddEmp = ({ handleClose, show, refresh }) => {
                 </Modal.Footer>
             </Modal>
 
-
-
-
-
         </div>
     )
 }

@@ -7,9 +7,10 @@ import toast, { Toaster } from 'react-hot-toast';
 
 
 
-const AddDept = ({ handleClose, show, refresh }) => {
+const AddBonus = ({ handleClose, show, refresh }) => {
 
-    const [dname, setDname] = useState("");
+    const [value, setValue] = useState("");
+    const [month, setMonth]= useState("");
     
     // function
     const save = async () => {
@@ -25,9 +26,7 @@ const AddDept = ({ handleClose, show, refresh }) => {
             body: JSON.stringify(suppbody)
         })
         const jdata = await res.json()
-       
         toast.success('Added!')
-        toast.error("This didn't work.")
          handleClose()
          setDname("")
     }

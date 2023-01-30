@@ -27,16 +27,15 @@ function App() {
   const handleShow2 = () => setShow2(true);
 
   //
-const getData = async () =>
-{
-  const res = await fetch('http://localhost:5000/GetReports/'+selectdep.id+'/january')
-  const jdata = await res.json()
-  setReports(jdata)
-}
+  const getData = async () => {
+    const res = await fetch('http://localhost:5000/GetReports/' + selectdep.id + '/january')
+    const jdata = await res.json()
+    setReports(jdata)
+  }
 
-//
+  //
   const getData2 = async () => {
-   
+
     // fetch dept data
     const depdb = await fetch('http://localhost:5000/GetDept')
     const ddata = await depdb.json()
@@ -51,13 +50,13 @@ const getData = async () =>
 
   useEffect(() => {
     getData2()
-  
+
   }, [])
 
-  
+
   useEffect(() => {
     getData()
-  
+
   }, [selectdep])
 
 
@@ -77,34 +76,11 @@ const getData = async () =>
       />
 
 
-      <div class="title" > <h1> LA IMMACULADA MARKETING</h1></div>
-
-      {/* buttons */}
-      <div class="buttons">
-        <button type="button" onClick={handleShow2} class="btn btn-primary me-2">Add Department</button>
-        <button type="button" onClick={handleShow} class="btn btn-primary me-2">Add Employee</button>
-        <button type="button" class="btn btn-primary me-2">Add Bonus</button>
-      </div>
+      <div class="title" mb-3 > <h1> LA IMMACULADA MARKETING</h1></div>
 
 
-      <h3>Reports</h3>
-
-      {/* filter/dropdown */}
 
 
-      <div class="d-flex flex-row-reverse bd-highlight">
-        <div class="p-2 bd-highlight">
-          <div class="filter1">Month <Select /></div>
-        </div>
-
-        <div class="p-2 bd-highlight">
-          <div class="filter1"> Department<Select options={dep} getOptionLabel={e => e.deptname} getOptionValue={e => e.id}
-                                                  value={selectdep} onChange = {handleChangedept} defaultValue={selectdep}/> 
-                                                  </div>
-        </div>
-
-
-      </div>
 
 
 
@@ -112,6 +88,31 @@ const getData = async () =>
       {/* table */}
       <div class="container">
 
+        {/* filter/dropdown */}
+
+
+        <div class="d-flex flex-row-reverse bd-highlight mb-4">
+          <div class="p-2 bd-highlight">
+            {/* <div class="filter1">Month <Select /></div> */}
+          </div>
+
+
+          <div class="p-2 bd-highlight">
+            <div class="filter1"> Department<Select options={dep} getOptionLabel={e => e.deptname} getOptionValue={e => e.id}
+              value={selectdep} onChange={handleChangedept} defaultValue={selectdep} />
+            </div>
+          </div>
+
+          {/* buttons */}
+          <div class="buttons">
+            <button type="button" onClick={handleShow2} class="btn btn-primary me-2">Add Department</button>
+            <button type="button" onClick={handleShow} class="btn btn-primary me-2">Add Employee</button>
+            {/* <button type="button" class="btn btn-primary me-2">Add Bonus</button> */}
+          </div>
+
+        </div>
+
+        <h3>Reports</h3>
         <table class="table">
 
           <thead>
@@ -123,7 +124,9 @@ const getData = async () =>
               <th scope="col">Email Address</th>
               <th scope="col">Date of Birth</th>
               <th scope="col">Monthly Salary</th>
+              <th scope="col">Percent</th>
               <th scope="col">Bonus</th>
+              <th scope="col">Action</th>
             </tr>
           </thead>
 
@@ -138,8 +141,9 @@ const getData = async () =>
                   <td>{value.emailadd}</td>
                   <td>{value.birthday}</td>
                   <td>{value.msalary}</td>
-                  {/* <td>{value.deptname}</td> */}
+                  { <td>{value.value}</td> }
                   <td>{value.salary_with_bonus}</td>
+                  <td> <button class="btn btn-primary me-2" >Delete</button></td>
                 </tr>
 
               ))
